@@ -49,7 +49,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full overflow-hidden"
+      className="relative min-h-[125vh] md:min-h-screen w-full overflow-hidden"
       style={{
         background: `
           radial-gradient(circle at 85% 15%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
@@ -116,7 +116,7 @@ export function Hero() {
           alt="Portrait of Shahribonu"
           className="object-cover rounded-2xl shadow-2xl
                      transition-all duration-500
-                     w-[270px] max-w-[95%] max-h-[35vh]
+                     w-[270px] max-w-[95%] max-h-[55vh]
                      sm:w-[270px] sm:max-h-[55vh]
                      md:w-auto md:max-h-[70vh]
                      lg:max-h-[75vh] xl:max-h-[80vh]
