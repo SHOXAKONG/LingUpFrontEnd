@@ -5,6 +5,7 @@
   "results": "Natijalar",
   "reviews": "Sharhlar",
   "courses": "Kurslar",
+  "contact_info": "Aloqa ma'lumotlari",
   "master_english": "Ingliz-tilini O'rganing",
   "join_thousands": "Minglab talabalar kabi siz ham ravon so‘zlashishni o‘rganing va yangi imkoniyatlarga yo‘l oching.",
   "contact": "Aloqa",
@@ -51,6 +52,7 @@
   "popular": "Ommabop",
   "hurry_places_are_limited": "⏳ Shoshiling, joylar soni cheklangan!",
   "dont_miss_out_spots":"Qolgan joylarni boy bermang 🚀",
+  "empowering": "Dunyo bo'ylab talabalarga innovatsion onlayn kurslar va shaxsiy o'rganish tajribasi orqali ingliz tilini o'zlashtirish imkoniyatini berish.",
   "slides": {
     "1": { "description": "Yozma tushunish va og‘zaki nutqda yuqori natijalarga erishdi." },
     "2": { "description": "Boy lug‘at va grammatik bilimga ega, gapirishda a’lo darajada." },

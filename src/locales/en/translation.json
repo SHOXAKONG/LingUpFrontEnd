@@ -6,6 +6,7 @@
   "reviews": "Reviews",
   "contact": "Contact",
   "courses": "Courses",
+  "contact_info": "Contact Info",
   "master_english": "Master English",
   "join_thousands": "Join thousands of students who have achieved fluency and opened new opportunities.",
   "students": "Students",
@@ -51,6 +52,7 @@
   "popular": "Popular",
   "hurry_places_are_limited": "⏳ Hurry, places are limited!",
   "dont_miss_out_spots":"Don't miss out on the remaining spots 🚀",
+  "empowering": "Empowering students worldwide to master English through innovative online courses and personalized learning experiences.",
   "slides": {
     "1": { "description": "Achieved high marks in written comprehension and oral performance." },
     "2": { "description": "Strong vocabulary and grammar understanding, excels in speaking." },

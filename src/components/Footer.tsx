@@ -3,8 +3,10 @@ import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export function Footer() {
+  const { t } = useTranslation();
   // Smooth scroll to on-page sections
   const scrollTo = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     const el = document.getElementById(id);
@@ -30,13 +32,13 @@ export function Footer() {
             >
               <h3 className="text-2xl font-bold">LingUp</h3>
               <p className="text-gray-600 leading-relaxed">
-                Empowering students worldwide to master English through innovative online courses and personalized learning experiences.
+                {t('empowering')}
               </p>
               <div className="flex space-x-2">
                 {[
-                  { Icon: Facebook, href: "https://facebook.com/yourpage", label: "Facebook" },
+                  { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61558797356892", label: "Facebook" },
                   { Icon: Twitter, href: "https://twitter.com/yourhandle", label: "Twitter" },
-                  { Icon: Instagram, href: "https://instagram.com/yourhandle", label: "Instagram" },
+                  { Icon: Instagram, href: "https://www.instagram.com/lingup_uz/", label: "Instagram" },
                   { Icon: Linkedin, href: "https://linkedin.com/company/yourcompany", label: "LinkedIn" },
                 ].map(({ Icon, href, label }) => (
                     <a key={href} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
@@ -56,15 +58,12 @@ export function Footer() {
                 viewport={{ once: true }}
                 className="space-y-4"
             >
-              <h4 className="font-medium text-black">Courses</h4>
+              <h4 className="font-medium text-black">{t("courses")}</h4>
               <ul className="space-y-2">
                 {[
-                  { label: "Beginner English", id: "courses" },
-                  { label: "Intermediate English", id: "courses" },
-                  { label: "Advanced English", id: "courses" },
-                  { label: "Business English", id: "courses" },
-                  { label: "IELTS Preparation", id: "courses" },
-                  { label: "TOEFL Preparation", id: "courses" },
+                  { label: "Start", id: "courses" },
+                  { label: "Standart", id: "courses" },
+                  { label: "Premium", id: "courses" },
                 ].map((course, index) => (
                     <motion.li
                         key={course.label}
@@ -95,7 +94,7 @@ export function Footer() {
             >
               <h4 className="font-medium text-black">Menu</h4>
               <ul className="space-y-2">
-                {["Results", "Reviews", "Contact", "Courses"].map((item, index) => (
+                {[t("results"), t("reviews"), t("contact"), t("courses")].map((item, index) => (
                     <motion.li
                         key={item}
                         initial={{ opacity: 0, x: -10 }}
@@ -123,7 +122,7 @@ export function Footer() {
                 viewport={{ once: true }}
                 className="space-y-4"
             >
-              <h4 className="font-medium text-black">Contact Info</h4>
+              <h4 className="font-medium text-black">{t("contact_info")}</h4>
               <div className="space-y-3">
                 <a
                     href="mailto:support@lingup.com"
