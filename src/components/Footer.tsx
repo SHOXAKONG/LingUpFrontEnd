@@ -136,7 +136,7 @@ export function Footer() {
                     className="flex items-center space-x-3 text-black/70 hover:text-black transition-colors"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+998(90)499-50-00</span>
                 </a>
                 <a
                     href="https://maps.google.com/?q=123%20Education%20Street%2C%20Learning%20City"
@@ -145,7 +145,7 @@ export function Footer() {
                     className="flex items-center space-x-3 text-black/70 hover:text-black transition-colors"
                 >
                   <MapPin className="w-4 h-4" />
-                  <span>123 Education Street, Learning City</span>
+                  <span>Mirzo Ulug'bek tumani, Qorasuv 3, 4</span>
                 </a>
               </div>
             </motion.div>
@@ -162,7 +162,7 @@ export function Footer() {
               className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
           >
             <div className="text-black/60">
-              <p>&copy; 2025 LingUp. All rights reserved.</p>
+              <p>&copy; 2025 CodeCraft. All rights reserved.</p>
             </div>
             <div className="flex space-x-6">
               {[
