@@ -33,7 +33,7 @@ export function Contact() {
     const fetchTimer = async () => {
       try {
         const response = await axios.get(
-          "/api/auth/timer/timers"
+          "https://api.lingup.uz/api/auth/timer/timers"
         );
         console.log(response)
         const seconds = parseInt(response.data.remaining_seconds, 10);
@@ -74,7 +74,7 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/contact/", formData, {
+      const response = await axios.post("https://api.lingup.uz/api/contact/", formData, {
         headers: { "Content-Type": "application/json" },
       });
       console.log(response.data);
@@ -208,7 +208,6 @@ export function Contact() {
                       name="phone_number"
                       type="text"
                       inputMode="numeric"
-                      pattern="[0-9]*"
                       placeholder={t("enter_phone")}
                       value={formData.phone_number}
                       onChange={handleChange}
