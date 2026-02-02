@@ -1,9 +1,15 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+const TelegramIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+    <path d="M21.8 4.2c.2-.8-.6-1.5-1.4-1.2L3.2 9.7c-.9.3-.8 1.6.1 1.8l4.6 1.4 1.7 5.2c.3.9 1.5 1 1.9.2l2.3-4 4.3 3.2c.7.5 1.8.1 2-.8l2.7-12.5zM9.1 12.3l8.8-5.5-7 6.6-.3 3.8-1.2-3.8-3.7-1.1 9.8-3.7-6.4 3.7z" />
+  </svg>
+);
 
 export function Footer() {
   const { t } = useTranslation();
@@ -125,11 +131,13 @@ export function Footer() {
               <h4 className="font-medium text-black">{t("contact_info")}</h4>
               <div className="space-y-3">
                 <a
-                    href="mailto:support@lingup.com"
+                    href="https://t.me/lingup_admin"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center space-x-3 text-black/70 hover:text-black transition-colors"
                 >
-                  <Mail className="w-4 h-4" />
-                  <span>support@lingup.com</span>
+                  <TelegramIcon className="w-4 h-4" />
+                  <span>@admin_lingup</span>
                 </a>
                 <a
                     href="tel:+15551234567"

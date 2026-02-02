@@ -144,23 +144,21 @@ function NextArrow(props: { onClick?: () => void }) {
 }
 
 export function Reviews() {
-  useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const genericTexts = useMemo(() => {
+    const texts = t("review_texts", { returnObjects: true });
+    if (Array.isArray(texts) && texts.length > 0) {
+      return texts as string[];
+    }
+    if (typeof texts === "string" && (texts as string).trim()) {
+      return [texts as string];
+    }
+    return ["Classes are interactive and interesting. My speaking improved quickly."];
+  }, [t, i18n.language]);
 
   /** Build reviews from image index → meta mapping */
   const people: Review[] = useMemo(() => {
-    const genericTexts = [
-      "Darslar interaktiv va qiziqarli. Tez orada gapirishim yaxshilandi.",
-      "Mentorlar doimiy ravishda yordam berishadi, ular fikr-mulohazalarini aniq va samarali tarzda yetkazishadi.",
-      "Darslar amaliy misollar bilan boyitilgan, shuning uchun bilimlarni amaliyotda qo'llash oson.",
-      "Platforma juda qulay, darslar va resurslarga kirish juda oson.",
-      "O'qituvchilar har doim diqqat bilan tinglaydi va kerakli yordamni berishadi.",
-      "Darslar juda qiziqarli va tinglash uchun zarur bo'lgan barcha materiallar mavjud.",
-      "Mentorlar haqiqiy hayotiy misollar orqali bilimlarni o'rgatadilar, bu esa o'qishni yanada samarali qiladi.",
-      "Boshqa o'quvchilar bilan guruh ishlari juda foydali, ularning fikrlari va tajribalari bilan baham ko'rish imkoniyati mavjud.",
-      "Har bir darsda o'qituvchi o'z bilimlarini o'rgatishdan tashqari, o'quvchilarga o'z fikrlarini erkin ifodalashni rag'batlantiradi.",
-      "O'quv dasturi juda yaxshi, lekin yanada ko'proq amaliy mashqlar kiritilsa, yaxshi bo'lardi.",
-      "Men kursni tugatganimdan so'ng o'z ingliz tilimda katta o'zgarishlarni sezdim, va bu kurs meni rivojlantirdi.",
-    ];
     const tags = [
       "Begginer",
       "Intermediate",
@@ -182,7 +180,7 @@ export function Reviews() {
         avatar: url,
       };
     });
-  }, []);
+  }, [genericTexts]);
 
   /** Duplicate to make full slides of 6 (2 rows × 3) */
   const reviews: Review[] = useMemo(() => {

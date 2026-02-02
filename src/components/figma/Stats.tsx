@@ -76,7 +76,7 @@ const StatsSection = () => {
 
                 <div className="mb-3 relative">
                   <span className="text-3xl lg:text-4xl font-black text-white drop-shadow-lg tracking-tight group-hover:scale-105 transition-transform duration-300 inline-block">
-                    5,000+
+                    5,500+
                   </span>
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
                 </div>
@@ -123,7 +123,7 @@ const StatsSection = () => {
 
                 <div className="mb-3 relative">
                   <span className="text-3xl lg:text-4xl font-black text-white drop-shadow-lg tracking-tight group-hover:scale-105 transition-transform duration-300 inline-block">
-                    10+
+                    17+
                   </span>
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
                 </div>
@@ -255,7 +255,7 @@ const StatsSection = () => {
                 <div className="flex-1">
                   <div className="flex items-center space-x-2">
                     <span className="text-2xl sm:text-3xl font-black text-white drop-shadow-lg tracking-tight">
-                      10+
+                      17+
                     </span>
                     <div className="w-2.5 h-2.5 bg-orange-400 rounded-full animate-pulse"></div>
                   </div>
