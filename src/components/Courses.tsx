@@ -66,8 +66,8 @@ const pickLocalized = (obj: Record<string, any>, base: string, language: string)
   const lang = (language || "").toLowerCase();
   const key =
     lang.startsWith("ru") ? `${base}_ru` :
-    lang.startsWith("uz") ? `${base}_uz` :
-    base;
+      lang.startsWith("uz") ? `${base}_uz` :
+        base;
   return obj?.[base] ?? obj?.[key] ?? obj?.[base] ?? "";
 };
 
@@ -125,6 +125,8 @@ const buildCoursesFromSkillApi = (rows: ApiSkillRow[], language: string): Course
     }));
 };
 
+import type { ViewType } from "../App";
+
 /* ===== UI Components (unchanged) ===== */
 const SkillIcon = ({ status }: { status: boolean }) => {
   const Icon = status ? Check : X;
@@ -151,9 +153,9 @@ const SkillItem = ({ feature, index }: { feature: Feature; index: number }) => (
   </motion.li>
 );
 
-const CourseCard = ({ course, index }: { course: Course; index: number }) => {
+const CourseCard = ({ course, index, setView }: { course: Course; index: number; setView: (view: ViewType) => void }) => {
   const { t } = useTranslation();
-  const handleEnrollClick = () => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  const handleEnrollClick = () => setView("order");
 
   return (
     <motion.div
@@ -255,7 +257,7 @@ const ErrorState = ({ message }: { message: string }) => (
 );
 
 /* ===== Main Component ===== */
-export function Courses() {
+export function Courses({ setView }: { setView: (view: ViewType) => void }) {
   const { i18n, t } = useTranslation();
 
   // Choose endpoint per language (handles 'ru', 'ru-RU', 'uz', 'uz-UZ', etc.)
@@ -330,7 +332,7 @@ export function Courses() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center">
           {courses.map((course, index) => (
-            <CourseCard key={course.id} course={course} index={index} />
+            <CourseCard key={course.id} course={course} index={index} setView={setView} />
           ))}
         </div>
       </div>

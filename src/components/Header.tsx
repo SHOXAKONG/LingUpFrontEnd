@@ -4,6 +4,8 @@ import { Menu, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import type { ViewType } from "../App";
+
 const LANGUAGES = [
   { code: "uz", label: "O'zbek" },
   { code: "en", label: "English" },
@@ -17,7 +19,7 @@ const NAV_ITEMS = [
   { label: "Courses", id: "courses" },
 ];
 
-export function Header() {
+export function Header({ setView }: { setView: (view: ViewType) => void }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
@@ -63,8 +65,11 @@ export function Header() {
             className="flex items-center"
           >
             <button
-              onClick={() => handleLinkClick("hero")}
-              className="text-2xl font-bold text-black cursor-pointer"
+              onClick={() => {
+                setView("landing");
+                setTimeout(() => handleLinkClick("hero"), 100);
+              }}
+              className="text-2xl font-bold text-black cursor-pointer bg-transparent border-none"
             >
               LingUp
             </button>
@@ -135,46 +140,46 @@ export function Header() {
 
         {/* Mobile Nav */}
         <AnimatePresence>
-            {isMenuOpen && (
-                <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="md:hidden pb-4 overflow-hidden"
-                >
-                <div className="flex flex-col space-y-4 mt-2 px-2">
-                    {NAV_ITEMS.map((item, index) => (
-                    <motion.button
-                        key={item.id}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-                        onClick={() => {
-                        // close menu first
-                        setIsMenuOpen(false);
-                        // then scroll after animation finishes
-                        setTimeout(() => handleLinkClick(item.id), 300);
-                        }}
-                        className="text-black/70 hover:text-black transition-colors duration-200 text-left bg-transparent border-none cursor-pointer"
-                    >
-                        {t(item.id)}
-                    </motion.button>
-                    ))}
-
-                    <Button
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden pb-4 overflow-hidden"
+            >
+              <div className="flex flex-col space-y-4 mt-2 px-2">
+                {NAV_ITEMS.map((item, index) => (
+                  <motion.button
+                    key={item.id}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
                     onClick={() => {
-                        setIsMenuOpen(false);
-                        setTimeout(() => handleLinkClick("courses"), 300);
+                      // close menu first
+                      setIsMenuOpen(false);
+                      // then scroll after animation finishes
+                      setTimeout(() => handleLinkClick(item.id), 300);
                     }}
-                    className="w-full mt-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-none hover:shadow-lg transition-all duration-200"
-                    >
-                    {t("start_learning")}
-                    </Button>
-                </div>
-                </motion.div>
-            )}
-            </AnimatePresence>
+                    className="text-black/70 hover:text-black transition-colors duration-200 text-left bg-transparent border-none cursor-pointer"
+                  >
+                    {t(item.id)}
+                  </motion.button>
+                ))}
+
+                <Button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setTimeout(() => handleLinkClick("courses"), 300);
+                  }}
+                  className="w-full mt-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-none hover:shadow-lg transition-all duration-200"
+                >
+                  {t("start_learning")}
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   );
