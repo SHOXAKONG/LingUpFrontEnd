@@ -42,6 +42,15 @@ interface PricePlan {
 type PaymentApiResponse = PaymentCard[] | { results?: PaymentCard[] };
 type PriceApiResponse = PricePlan[] | { results?: PricePlan[] };
 
+const BOOKING_PLACE_PLAN: PricePlan = {
+    id: "booking-place-static",
+    course: "Joyingizni Bron qiling",
+    price: "100000",
+    order: 9999,
+    description: "Static booking option",
+    is_active: true,
+};
+
 const isPaymentCard = (value: unknown): value is PaymentCard => {
     if (!value || typeof value !== "object") {
         return false;
@@ -180,10 +189,11 @@ export function OrderPage({ setView }: OrderPageProps) {
 
                 setPlans(activePlans);
                 setSelectedPlanId((prev) => {
-                    if (prev && activePlans.some((plan) => String(plan.id) === prev)) {
+                    const availablePlans = [...activePlans, BOOKING_PLACE_PLAN];
+                    if (prev && availablePlans.some((plan) => String(plan.id) === prev)) {
                         return prev;
                     }
-                    return activePlans.length > 0 ? String(activePlans[0].id) : null;
+                    return availablePlans.length > 0 ? String(availablePlans[0].id) : null;
                 });
             } catch (error) {
                 if (!isMounted) {
@@ -328,7 +338,8 @@ export function OrderPage({ setView }: OrderPageProps) {
         }
     };
 
-    const selectedPlan = plans.find((plan) => String(plan.id) === selectedPlanId) ?? null;
+    const allPlans = [...plans, BOOKING_PLACE_PLAN];
+    const selectedPlan = allPlans.find((plan) => String(plan.id) === selectedPlanId) ?? null;
     const selectedPlanName = selectedPlan?.course ?? "Tarif tanlang";
     const selectedPlanPrice = selectedPlan ? formatPrice(selectedPlan.price) : "0";
     const isConfirmationFormValid =
@@ -374,7 +385,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                             <button
                                 type="button"
                                 onClick={() => setIsPlansOpen((prev) => !prev)}
-                                disabled={isLoadingPlans || plans.length === 0}
+                                disabled={isLoadingPlans || allPlans.length === 0}
                                 className="w-full flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100 cursor-pointer hover:bg-gray-100 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                                 <span className="font-medium text-gray-700">
@@ -383,9 +394,9 @@ export function OrderPage({ setView }: OrderPageProps) {
                                 <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${isPlansOpen ? "rotate-180" : ""}`} />
                             </button>
 
-                            {isPlansOpen && plans.length > 0 && (
+                            {isPlansOpen && allPlans.length > 0 && (
                                 <div className="absolute z-20 mt-2 w-full rounded-2xl border border-gray-100 bg-white shadow-xl overflow-hidden">
-                                    {plans.map((plan) => {
+                                    {allPlans.map((plan) => {
                                         const isSelected = String(plan.id) === selectedPlanId;
                                         return (
                                             <button
