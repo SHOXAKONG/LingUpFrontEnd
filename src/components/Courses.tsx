@@ -71,10 +71,17 @@ const pickLocalized = (obj: Record<string, any>, base: string, language: string)
   return obj?.[base] ?? obj?.[key] ?? obj?.[base] ?? "";
 };
 
-const formatPrice = (price: string): { current: string; original?: string } => {
+const STATIC_ORIGINAL_PRICE_BY_ORDER: Record<number, number> = {
+  1: 1180000,
+  2: 1780000,
+  3: 2580000,
+};
+
+const formatPrice = (price: string, order?: number): { current: string; original?: string } => {
   const n = Number(price);
   const current = `${Number.isFinite(n) ? n.toLocaleString() : price}sum`;
-  const original = Number.isFinite(n) && n > 0 ? `${(n + 50000).toLocaleString()}sum` : undefined;
+  const staticOriginal = typeof order === "number" ? STATIC_ORIGINAL_PRICE_BY_ORDER[order] : undefined;
+  const original = typeof staticOriginal === "number" ? `${staticOriginal.toLocaleString()}sum` : undefined;
   return { current, original };
 };
 
@@ -93,7 +100,7 @@ const buildCoursesFromSkillApi = (rows: ApiSkillRow[], language: string): Course
     if (!byCourse.has(cid)) {
       const title = pickLocalized(r.price_list, "course", language) || "No Title";
       const description = pickLocalized(r.price_list, "description", language) || "No description available.";
-      const { current: price, original: originalPrice } = formatPrice(r.price_list.price);
+      const { current: price, original: originalPrice } = formatPrice(r.price_list.price, Number(r.price_list.order));
       byCourse.set(cid, {
         title, description, price, originalPrice,
         courseOrder: Number.isFinite(Number(r.price_list.order)) ? Number(r.price_list.order) : 9999,
