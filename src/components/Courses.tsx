@@ -47,13 +47,13 @@ interface Course {
 const ANIMATION_VARIANTS = {
   container: {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
   },
   card: {
     hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: (index: number) => ({
       opacity: 1, y: 0, scale: 1,
-      transition: { duration: 0.7, delay: index * 0.15, ease: "easeOut", type: "spring", stiffness: 100 }
+      transition: { type: "spring" as const, delay: index * 0.15, stiffness: 100 }
     })
   }
 };

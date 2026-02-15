@@ -338,6 +338,30 @@ export function OrderPage({ setView }: OrderPageProps) {
         }
     };
 
+    const navigateToLanding = () => {
+        setView("landing");
+
+        let attempts = 0;
+        const maxAttempts = 40;
+        const tryScrollToHero = () => {
+            const heroSection = document.getElementById("hero");
+            if (heroSection) {
+                heroSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                return;
+            }
+
+            attempts += 1;
+            if (attempts < maxAttempts) {
+                window.requestAnimationFrame(tryScrollToHero);
+                return;
+            }
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
+        window.requestAnimationFrame(tryScrollToHero);
+    };
+
     const allPlans = [...plans, BOOKING_PLACE_PLAN];
     const selectedPlan = allPlans.find((plan) => String(plan.id) === selectedPlanId) ?? null;
     const selectedPlanName = selectedPlan?.course ?? "Tarif tanlang";
@@ -359,7 +383,7 @@ export function OrderPage({ setView }: OrderPageProps) {
             <div className="max-w-6xl mx-auto mb-3">
                 <Button
                     variant="ghost"
-                    onClick={() => setView('landing')}
+                    onClick={navigateToLanding}
                     className="text-gray-500 hover:text-gray-900 flex items-center gap-2 group transition-all"
                 >
                     <ChevronDown className="w-5 h-5 rotate-90 group-hover:-translate-x-1 transition-transform" />
