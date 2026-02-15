@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -42,10 +42,10 @@ export function Footer() {
               </p>
               <div className="flex space-x-2">
                 {[
-                  { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61558797356892", label: "Facebook" },
-                  { Icon: Twitter, href: "https://twitter.com/yourhandle", label: "Twitter" },
-                  { Icon: Instagram, href: "https://www.instagram.com/lingup_uz/", label: "Instagram" },
-                  { Icon: Linkedin, href: "https://linkedin.com/company/yourcompany", label: "LinkedIn" },
+                  { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61558507207895", label: "Facebook" },
+                  { Icon: Youtube, href: "https://www.youtube.com/@LingUp", label: "YouTube" },
+                  { Icon: Instagram, href: "https://www.instagram.com/lingup_with_bonu/", label: "Instagram" },
+                  { Icon: TelegramIcon, href: "https://t.me/lingup_uz", label: "Telegram" },
                 ].map(({ Icon, href, label }) => (
                     <a key={href} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
                       <Button variant="ghost" size="icon" className="text-black/60 hover:text-black">
