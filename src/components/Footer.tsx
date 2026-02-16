@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Phone, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
