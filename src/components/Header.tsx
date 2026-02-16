@@ -77,6 +77,11 @@ export function Header({ setView }: { setView: (view: ViewType) => void }) {
     window.requestAnimationFrame(tryScroll);
   };
 
+  const redirectToAccount = () => {
+    setIsMenuOpen(false);
+    window.location.href = "https://account.lingup.uz";
+  };
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -146,7 +151,7 @@ export function Header({ setView }: { setView: (view: ViewType) => void }) {
               className="hidden md:block"
             >
               <Button
-                onClick={() => navigateToSection("courses")}
+                onClick={redirectToAccount}
                 className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-none hover:shadow-lg transition-all duration-200"
               >
                 {t("start_learning")}
@@ -193,9 +198,7 @@ export function Header({ setView }: { setView: (view: ViewType) => void }) {
                 ))}
 
                 <Button
-                  onClick={() => {
-                    navigateToSection("courses");
-                  }}
+                  onClick={redirectToAccount}
                   className="w-full mt-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-none hover:shadow-lg transition-all duration-200"
                 >
                   {t("start_learning")}

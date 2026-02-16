@@ -43,7 +43,7 @@ export function Footer() {
               <div className="flex space-x-2">
                 {[
                   { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61558507207895", label: "Facebook" },
-                  { Icon: Youtube, href: "https://www.youtube.com/@LingUp", label: "YouTube" },
+                  { Icon: Youtube, href: "https://www.youtube.com/@LingUp.", label: "YouTube" },
                   { Icon: Instagram, href: "https://www.instagram.com/lingup_with_bonu/", label: "Instagram" },
                   { Icon: TelegramIcon, href: "https://t.me/lingup_uz", label: "Telegram" },
                 ].map(({ Icon, href, label }) => (
