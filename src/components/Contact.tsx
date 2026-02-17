@@ -182,6 +182,30 @@ export function Contact() {
               </CardHeader>
 
               <CardContent className="relative p-4 sm:p-6 lg:p-8">
+                {/* ✅ Timer Card at top of form */}
+                {time !== null && time > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 sm:mb-8 p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-purple-50 border border-indigo-200 relative overflow-hidden"
+                  >
+                    {/* Decorative glow */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 blur-3xl" />
+
+                    {/* Timer content */}
+                    <div className="relative text-center space-y-2 sm:space-y-3">
+                      <p className="text-sm sm:text-base font-semibold text-gray-700">
+                        {t("hurry_places_are_limited")}
+                      </p>
+                      <span className="text-xl sm:text-2xl lg:text-3xl font-mono font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse block">
+                        {formatTime(time)}
+                      </span>
+                      <p className="text-xs sm:text-sm text-gray-500">
+                        {t("dont_miss_out_spots")}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
                 <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 lg:space-y-5">
                   <div className="space-y-1 sm:space-y-2">
                     <Label htmlFor="name" className="text-gray-700 text-base sm:text-lg font-semibold block">
@@ -272,31 +296,6 @@ export function Contact() {
             className="w-full"
           >
             <div className="space-y-6 sm:space-y-8 h-fit">
-              {/* ✅ Timer Card */}
-              {time !== null && time > 0 && (
-                <Card className="border-0 shadow-2xl rounded-3xl bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-                  <CardContent className="p-6 sm:p-8 lg:p-10 space-y-4 sm:space-y-6 text-center relative overflow-hidden">
-                    {/* Decorative glow */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 blur-3xl" />
-
-                    {/* Header */}
-                    <p className="relative text-sm sm:text-base lg:text-lg xl:text-xl font-semibold text-gray-700 leading-tight">
-                      {t("hurry_places_are_limited")}
-                    </p>
-
-                    {/* Time Display */}
-                    <span className="relative text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-mono font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse drop-shadow-sm block">
-                      {formatTime(time)}
-                    </span>
-
-                    {/* Subtext */}
-                    <p className="relative text-xs sm:text-sm lg:text-base text-gray-500 leading-relaxed">
-                      {t("dont_miss_out_spots")}
-                    </p>
-                  </CardContent>
-                </Card>
-              )}
-
               {/* Enhanced Info Cards */}
               <Card className="border-0 shadow-2xl rounded-3xl bg-gradient-to-br from-white via-gray-50 to-purple-50 backdrop-blur-sm relative overflow-hidden">
                 {/* Decorative glow */}
