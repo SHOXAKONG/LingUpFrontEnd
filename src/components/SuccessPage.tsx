@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Home, MessageSquare } from "lucide-react";
+import { CheckCircle2, MessageSquare } from "lucide-react";
 import { Button } from "./ui/button";
 import type { ViewType } from "../App";
 
@@ -7,7 +7,7 @@ interface SuccessPageProps {
     setView: (view: ViewType) => void;
 }
 
-export function SuccessPage({ setView }: SuccessPageProps) {
+export function SuccessPage({ setView: _setView }: SuccessPageProps) {
     return (
         <div className="min-h-screen flex items-center justify-center pt-20 px-4">
             <motion.div

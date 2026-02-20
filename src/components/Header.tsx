@@ -40,12 +40,46 @@ export function Header({ setView }: { setView: (view: ViewType) => void }) {
     i18n.changeLanguage(e.target.value);
   };
 
-  const handleLinkClick = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false);
+  const navigateToSection = (id: string) => {
+    const scrollToTarget = () => {
+      const section = document.getElementById(id);
+      if (!section) {
+        return false;
+      }
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      return true;
+    };
+
+    setIsMenuOpen(false);
+
+    if (scrollToTarget()) {
+      return;
     }
+
+    setView("landing");
+
+    let attempts = 0;
+    const maxAttempts = 40;
+    const tryScroll = () => {
+      if (scrollToTarget()) {
+        return;
+      }
+
+      attempts += 1;
+      if (attempts < maxAttempts) {
+        window.requestAnimationFrame(tryScroll);
+        return;
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    window.requestAnimationFrame(tryScroll);
+  };
+
+  const redirectToAccount = () => {
+    setIsMenuOpen(false);
+    window.location.href = "https://account.lingup.uz";
   };
 
   return (
@@ -66,8 +100,7 @@ export function Header({ setView }: { setView: (view: ViewType) => void }) {
           >
             <button
               onClick={() => {
-                setView("landing");
-                setTimeout(() => handleLinkClick("hero"), 100);
+                navigateToSection("hero");
               }}
               className="text-2xl font-bold text-black cursor-pointer bg-transparent border-none"
             >
@@ -83,7 +116,7 @@ export function Header({ setView }: { setView: (view: ViewType) => void }) {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-                onClick={() => handleLinkClick(item.id)}
+                onClick={() => navigateToSection(item.id)}
                 className="text-black/70 hover:text-black transition-colors duration-200 cursor-pointer bg-transparent border-none"
               >
                 {t(item.id)}
@@ -118,7 +151,7 @@ export function Header({ setView }: { setView: (view: ViewType) => void }) {
               className="hidden md:block"
             >
               <Button
-                onClick={() => handleLinkClick("courses")}
+                onClick={redirectToAccount}
                 className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-none hover:shadow-lg transition-all duration-200"
               >
                 {t("start_learning")}
@@ -156,10 +189,7 @@ export function Header({ setView }: { setView: (view: ViewType) => void }) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
                     onClick={() => {
-                      // close menu first
-                      setIsMenuOpen(false);
-                      // then scroll after animation finishes
-                      setTimeout(() => handleLinkClick(item.id), 300);
+                      navigateToSection(item.id);
                     }}
                     className="text-black/70 hover:text-black transition-colors duration-200 text-left bg-transparent border-none cursor-pointer"
                   >
@@ -168,10 +198,7 @@ export function Header({ setView }: { setView: (view: ViewType) => void }) {
                 ))}
 
                 <Button
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    setTimeout(() => handleLinkClick("courses"), 300);
-                  }}
+                  onClick={redirectToAccount}
                   className="w-full mt-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-none hover:shadow-lg transition-all duration-200"
                 >
                   {t("start_learning")}

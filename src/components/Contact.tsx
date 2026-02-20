@@ -104,7 +104,7 @@ export function Contact({ isModal = false }: { isModal?: boolean }) {
   };
 
   return (
-    <div className={isModal ? "p-0 bg-white/95 backdrop-blur-2xl rounded-[10px] shadow-2xl overflow-y-auto max-h-[95vh] border border-white/50" : "relative py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 text-black"}>
+    <div className={isModal ? "p-0 bg-white/95 backdrop-blur-2xl rounded-[32px] shadow-2xl overflow-y-auto max-h-[90vh] border border-white/50" : "relative py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 text-black"}>
       {!isModal && (
         <div className="absolute inset-0 -z-10">
           <div className="w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-gradient-to-tr from-purple-300 via-pink-200 to-yellow-100 opacity-20 rounded-full blur-3xl absolute -top-20 -left-20 animate-pulse" />
@@ -113,7 +113,7 @@ export function Contact({ isModal = false }: { isModal?: boolean }) {
         </div>
       )}
 
-      <div className={isModal ? "p-10 md:p-12" : "max-w-9xl mx-auto"}>
+      <div className={isModal ? "p-8 md:p-10" : "max-w-7xl mx-auto"}>
         {!isModal && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -122,97 +122,151 @@ export function Contact({ isModal = false }: { isModal?: boolean }) {
             viewport={{ once: true }}
             className="text-center space-y-4 sm:space-y-6 mb-12 sm:mb-16 lg:mb-20"
           >
-            <h2 className="text-4xl sm:text-6xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 py-2 drop-shadow-sm">
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 py-2">
               {t("get_in_touch")}
             </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               {t("have_questions")}
             </p>
           </motion.div>
         )}
 
-        <div className={isModal ? "flex flex-col lg:flex-row gap-12 items-stretch" : "grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start"}>
-          <div className={isModal ? "w-full lg:w-3/5" : "w-full"}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="lg:col-span-7"
+          >
             {successMessage && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="p-4 mb-6 rounded-2xl bg-green-50 text-green-700 border border-green-100 text-lg font-medium shadow-sm"
+                className="p-4 mb-6 rounded-2xl bg-green-50 text-green-700 border border-green-100 text-sm font-medium shadow-sm flex items-center gap-2"
               >
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 {successMessage}
               </motion.div>
             )}
 
-            <div className={`space-y-6 ${isModal ? "bg-transparent" : "bg-white/50 backdrop-blur-sm p-10 rounded-3xl"}`}>
-              <div className="text-center lg:text-left mb-8">
-                <h3 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent tracking-tight">
+            <div className={`space-y-8 ${isModal ? "bg-transparent" : "bg-white/70 backdrop-blur-md p-8 sm:p-10 rounded-[32px] shadow-xl border border-white/50"}`}>
+              <div className="space-y-2">
+                <h3 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
                   {t("send_us_message")}
                 </h3>
+                <p className="text-gray-500 text-sm">{t("we_will_reply_soon") || "Biz tez orada javob beramiz"}</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">{t("enter_full_name")}</Label>
+                    <Label htmlFor="name" className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">{t("enter_full_name")}</Label>
                     <Input id="name" name="full_name" type="text" placeholder={t("enter_full_name")} value={formData.full_name} onChange={handleChange} required className={inputStyles} />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone_number" className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">{t("enter_phone")}</Label>
-                    <Input id="phone_number" name="phone_number" type="text" inputMode="numeric" placeholder={t("enter_phone")} value={formData.phone_number} onChange={handleChange} maxLength={14} required className={inputStyles} />
-                    {phoneError && <p className="text-red-500 text-xs font-semibold ml-1 animate-bounce">{phoneError}</p>}
+                    <Label htmlFor="phone_number" className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">{t("enter_phone")}</Label>
+                    <Input id="phone_number" name="phone_number" type="text" inputMode="numeric" placeholder="+998 90 123 45 67" value={formData.phone_number} onChange={handleChange} maxLength={14} required className={inputStyles} />
+                    {phoneError && <p className="text-red-500 text-[10px] font-bold ml-1 uppercase tracking-wider">{phoneError}</p>}
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">{t("message")}</Label>
+                  <Label htmlFor="message" className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">{t("message")}</Label>
                   <Textarea id="message" name="description" placeholder={t("help_text")} rows={4} value={formData.description} onChange={handleChange} required className={textareaStyles} />
                 </div>
 
-                <Button type="submit" className="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:shadow-2xl hover:shadow-indigo-500/40 text-white h-16 rounded-2xl border-0 transition-all duration-300 font-black text-xl shadow-xl">
-                  <Send className="mr-3 h-6 w-6" />
-                  <span>{t("send_message")}</span>
-                </Button>
+                <motion.div
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  className="pt-2"
+                >
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-6 rounded-2xl shadow-lg border-0 transition-all duration-300 flex items-center justify-center gap-3 group"
+                  >
+                    <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <span>{t("send_message")}</span>
+                  </Button>
+                </motion.div>
               </form>
             </div>
-          </div>
+          </motion.div>
 
-          <div className={isModal ? "w-full lg:w-2/5 border-t lg:border-t-0 lg:border-l border-gray-100 lg:pl-12 pt-10 lg:pt-0" : "w-full"}>
-            <div className="space-y-10 h-full flex flex-col justify-center">
-              {!isModal && time !== null && time > 0 && (
-                <Card className="border-0 shadow-2xl rounded-3xl bg-indigo-50/50 backdrop-blur-sm">
-                  <CardContent className="p-8 text-center">
-                    <p className="text-lg font-semibold text-gray-700 mb-2">{t("hurry_places_are_limited")}</p>
-                    <span className="text-5xl font-mono font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse">{formatTime(time)}</span>
-                  </CardContent>
-                </Card>
-              )}
-
-              <div className="space-y-8">
-                {[
-                  { icon: Phone, title: t("call_us"), value: "+998 (90) 499-5000", gradient: "from-green-500 to-emerald-400" },
-                  { icon: MapPin, title: t("visit_us"), value: "Qorasu-3 14-uy, Tashkent", gradient: "from-orange-500 to-yellow-400" },
-                  { icon: Clock, title: t("support_hours"), value: "9:00 AM - 8:00 PM", gradient: "from-purple-500 to-pink-500" },
-                ].map((item) => (
-                  <div key={item.title} className="flex items-center space-x-6 group">
-                    <div className={`p-4 rounded-2xl bg-gradient-to-br ${item.gradient} shadow-xl shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                      <item.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-400 text-xs uppercase tracking-[0.2em] mb-1">{item.title}</h4>
-                      <p className="text-gray-900 text-lg font-bold leading-tight">{item.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {isModal && time !== null && time > 0 && (
-                <div className="mt-auto pt-10 border-t border-gray-50 text-center lg:text-left">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">{t("hurry_places_are_limited")}</p>
-                  <span className="text-4xl font-mono font-black bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">{formatTime(time)}</span>
+          {/* Right Column: Info & Timer */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5 space-y-6"
+          >
+            {/* Timer Card */}
+            {!isModal && time !== null && time > 0 && (
+              <Card className="border-0 shadow-xl rounded-[32px] bg-indigo-600 p-8 text-center overflow-hidden relative group">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 group-hover:scale-110 transition-transform duration-500" />
+                <div className="relative space-y-2">
+                  <p className="text-indigo-100 text-sm font-medium uppercase tracking-[0.2em]">{t("hurry_places_are_limited")}</p>
+                  <div className="text-5xl font-mono font-black text-white">{formatTime(time)}</div>
                 </div>
-              )}
+              </Card>
+            )}
+
+            {/* Info Cards */}
+            <div className="space-y-4">
+              {[
+                {
+                  icon: Phone,
+                  title: t("call_us"),
+                  value: "+998 (90) 499-5000",
+                  href: "tel:+998904995000",
+                  gradient: "from-green-500 to-emerald-400",
+                  bg: "bg-green-50"
+                },
+                {
+                  icon: MapPin,
+                  title: t("visit_us"),
+                  value: "Qorasu-3 14-uy, Tashkent",
+                  href: "https://maps.google.com/?q=Qorasu-3+14-uy+Tashkent",
+                  gradient: "from-orange-500 to-yellow-400",
+                  bg: "bg-orange-50"
+                },
+                {
+                  icon: Clock,
+                  title: t("support_hours"),
+                  value: "9:00 AM - 8:00 PM",
+                  gradient: "from-purple-500 to-pink-500",
+                  bg: "bg-purple-50"
+                },
+              ].map((item, idx) => (
+                <motion.a
+                  key={idx}
+                  href={item.href}
+                  target={item.href?.startsWith('http') ? "_blank" : undefined}
+                  rel={item.href?.startsWith('http') ? "noopener noreferrer" : undefined}
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-4 p-5 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group"
+                >
+                  <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                    <item.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{item.title}</h4>
+                    <p className="text-gray-900 font-bold group-hover:text-indigo-600 transition-colors">{item.value}</p>
+                  </div>
+                </motion.a>
+              ))}
             </div>
-          </div>
+
+            {/* Footer Timer for Modal */}
+            {isModal && time !== null && time > 0 && (
+              <div className="pt-6 border-t border-gray-100 flex flex-col items-center lg:items-start">
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">{t("hurry_places_are_limited")}</p>
+                <div className="text-4xl font-mono font-black bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">{formatTime(time)}</div>
+              </div>
+            )}
+          </motion.div>
         </div>
       </div>
     </div>

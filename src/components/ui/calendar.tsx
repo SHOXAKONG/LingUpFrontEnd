@@ -61,12 +61,9 @@ function Calendar({
       }}
       components={{
         Nav: ({
-          nextMonth,
-          previousMonth,
           onNextClick,
           onPreviousClick,
           className,
-          ...props
         }) => (
           <div className={cn("flex items-center justify-between", className)}>
             <button
