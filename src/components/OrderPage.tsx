@@ -365,7 +365,6 @@ export function OrderPage({ setView }: OrderPageProps) {
     const allPlans = [...plans, BOOKING_PLACE_PLAN];
     const selectedPlan = allPlans.find((plan) => String(plan.id) === selectedPlanId) ?? null;
     const selectedPlanName = selectedPlan?.course ?? "Tarif tanlang";
-    const selectedPlanPrice = selectedPlan ? formatPrice(selectedPlan.price) : "0";
     const isConfirmationFormValid =
         confirmationForm.full_name.trim().length > 0 &&
         confirmationForm.phone.trim().length > 0 &&

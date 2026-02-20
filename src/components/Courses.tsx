@@ -120,7 +120,7 @@ const buildCoursesFromSkillApi = (rows: ApiSkillRow[], language: string): Course
 
   return Array.from(byCourse.entries())
     .sort((a, b) => a[1].courseOrder - b[1].courseOrder)
-    .map(([cid, agg], index) => ({
+    .map(([cid, agg]) => ({
       id: cid,
       title: agg.title,
       price: agg.price,
