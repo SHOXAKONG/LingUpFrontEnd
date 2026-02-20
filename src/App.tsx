@@ -4,17 +4,20 @@ import { Hero } from "./components/Hero";
 import { Courses } from "./components/Courses";
 import { StudentResults } from "./components/StudentResults";
 import { Reviews } from "./components/Reviews";
-import { Contact } from "./components/Contact";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import Stats from './components/figma/Stats'
 import { OrderPage } from "./components/OrderPage";
 import { SuccessPage } from "./components/SuccessPage";
+import { Contact } from "./components/Contact";
+import { ContactButton } from "./components/ContactButton";
+import { Dialog, DialogContent } from "./components/ui/dialog";
 
 export type ViewType = 'landing' | 'order' | 'success';
 
 export default function App() {
   const [view, setView] = useState<ViewType>('landing');
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
     <ThemeProvider>
@@ -33,7 +36,6 @@ export default function App() {
               <Stats />
               <StudentResults />
               <Reviews />
-              <Contact />
               <Courses setView={setView} />
             </>
           ) : view === 'order' ? (
@@ -43,7 +45,14 @@ export default function App() {
           )}
         </main>
 
-        {/* <div className="fixed bottom-5 right-5 z-40"><Phone /></div> */}
+        <ContactButton isOpen={isContactOpen} onClick={() => setIsContactOpen(!isContactOpen)} />
+
+        <Dialog open={isContactOpen} onOpenChange={setIsContactOpen}>
+          <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-[80vw] lg:max-w-[75vw] xl:max-w-[800px] lg:rounded-2xl p-0 overflow-y-visible max-h-[95vh] border-0 bg-transparent shadow-none">
+            <Contact isModal={true} />
+          </DialogContent>
+        </Dialog>
+
         <Footer />
       </div>
     </ThemeProvider>

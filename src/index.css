@@ -184,10 +184,38 @@
     }
   }
 }
+
 html {
   font-size: var(--font-size);
   scroll-behavior: smooth;
 }
-body{
+
+body {
   scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+}
+
+/* Support for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4f46e5 #f1f1f1;
 }

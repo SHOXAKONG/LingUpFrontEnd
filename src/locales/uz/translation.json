@@ -63,32 +63,79 @@
   "awards_won": "Mukofotlar Yutildi",
   "course_levels": "Kurs Darajalari",
   "popular": "Ommabop",
+  "sold_out": "Sotildi",
   "hurry_places_are_limited": "⏳ Shoshiling, joylar soni cheklangan!",
-  "dont_miss_out_spots":"Qolgan joylarni boy bermang 🚀",
+  "dont_miss_out_spots": "Qolgan joylarni boy bermang 🚀",
   "empowering": "Dunyo bo'ylab talabalarga innovatsion onlayn kurslar va shaxsiy o'rganish tajribasi orqali ingliz tilini o'zlashtirish imkoniyatini berish.",
   "slides": {
-    "1": { "description": "Yozma tushunish va og‘zaki nutqda yuqori natijalarga erishdi." },
-    "2": { "description": "Boy lug‘at va grammatik bilimga ega, gapirishda a’lo darajada." },
-    "3": { "description": "Barqaror natijador, jamoaviy ishlash va muloqotda kuchli." },
-    "4": { "description": "Sinfdagi eng yaxshi natija, til o‘rganishga katta qiziqish bilan." },
-    "5": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "6": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "7": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "8": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "9": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "10": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "11": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "12": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "13": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "14": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "15": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "16": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "17": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "18": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "19": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "20": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "21": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "22": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." },
-    "23": { "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon." }
+    "1": {
+      "description": "Yozma tushunish va og‘zaki nutqda yuqori natijalarga erishdi."
+    },
+    "2": {
+      "description": "Boy lug‘at va grammatik bilimga ega, gapirishda a’lo darajada."
+    },
+    "3": {
+      "description": "Barqaror natijador, jamoaviy ishlash va muloqotda kuchli."
+    },
+    "4": {
+      "description": "Sinfdagi eng yaxshi natija, til o‘rganishga katta qiziqish bilan."
+    },
+    "5": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "6": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "7": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "8": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "9": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "10": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "11": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "12": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "13": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "14": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "15": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "16": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "17": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "18": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "19": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "20": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "21": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "22": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    },
+    "23": {
+      "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
+    }
   }
 }

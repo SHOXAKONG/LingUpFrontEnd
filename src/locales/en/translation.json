@@ -63,32 +63,79 @@
   "awards_won": "Awards Won",
   "course_levels": "Course Levels",
   "popular": "Popular",
+  "sold_out": "Sold Out",
   "hurry_places_are_limited": "⏳ Hurry, places are limited!",
-  "dont_miss_out_spots":"Don't miss out on the remaining spots 🚀",
+  "dont_miss_out_spots": "Don't miss out on the remaining spots 🚀",
   "empowering": "Empowering students worldwide to master English through innovative online courses and personalized learning experiences.",
   "slides": {
-    "1": { "description": "Achieved high marks in written comprehension and oral performance." },
-    "2": { "description": "Strong vocabulary and grammar understanding, excels in speaking." },
-    "3": { "description": "Consistent performer, great teamwork and communication." },
-    "4": { "description": "Top scorer in class with a passion for language learning." },
-    "5": { "description": "Exceptional writing skills and fluency in discussion." },
-    "6": { "description": "Exceptional writing skills and fluency in discussion." },
-    "7": { "description": "Exceptional writing skills and fluency in discussion." },
-    "8": { "description": "Exceptional writing skills and fluency in discussion." },
-    "9": { "description": "Exceptional writing skills and fluency in discussion." },
-    "10": { "description": "Exceptional writing skills and fluency in discussion." },
-    "11": { "description": "Exceptional writing skills and fluency in discussion." },
-    "12": { "description": "Exceptional writing skills and fluency in discussion." },
-    "13": { "description": "Exceptional writing skills and fluency in discussion." },
-    "14": { "description": "Exceptional writing skills and fluency in discussion." },
-    "15": { "description": "Exceptional writing skills and fluency in discussion." },
-    "16": { "description": "Exceptional writing skills and fluency in discussion." },
-    "17": { "description": "Exceptional writing skills and fluency in discussion." },
-    "18": { "description": "Exceptional writing skills and fluency in discussion." },
-    "19": { "description": "Exceptional writing skills and fluency in discussion." },
-    "20": { "description": "Exceptional writing skills and fluency in discussion." },
-    "21": { "description": "Exceptional writing skills and fluency in discussion." },
-    "22": { "description": "Exceptional writing skills and fluency in discussion." },
-    "23": { "description": "Exceptional writing skills and fluency in discussion." }
+    "1": {
+      "description": "Achieved high marks in written comprehension and oral performance."
+    },
+    "2": {
+      "description": "Strong vocabulary and grammar understanding, excels in speaking."
+    },
+    "3": {
+      "description": "Consistent performer, great teamwork and communication."
+    },
+    "4": {
+      "description": "Top scorer in class with a passion for language learning."
+    },
+    "5": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "6": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "7": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "8": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "9": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "10": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "11": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "12": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "13": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "14": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "15": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "16": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "17": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "18": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "19": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "20": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "21": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "22": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    },
+    "23": {
+      "description": "Exceptional writing skills and fluency in discussion."
+    }
   }
 }

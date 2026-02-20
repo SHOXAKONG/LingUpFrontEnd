@@ -41,6 +41,7 @@ interface Course {
   lessons: string;
   description: string;
   features: Feature[];
+  isSoldOut?: boolean;
 }
 
 /* ===== Animation & Defaults ===== */
@@ -112,7 +113,7 @@ const buildCoursesFromSkillApi = (rows: ApiSkillRow[], language: string): Course
 
   return Array.from(byCourse.entries())
     .sort((a, b) => a[1].courseOrder - b[1].courseOrder)
-    .map(([cid, agg]) => ({
+    .map(([cid, agg], index) => ({
       id: cid,
       title: agg.title,
       price: agg.price,
@@ -121,6 +122,7 @@ const buildCoursesFromSkillApi = (rows: ApiSkillRow[], language: string): Course
       features: Array.from(agg.featureMap.entries())
         .sort((a, b) => a[1].order - b[1].order)
         .map(([name, meta]) => ({ name, status: meta.status })),
+      isSoldOut: agg.title.toLowerCase().includes("premium"),
       ...DEFAULT_COURSE_STATS
     }));
 };
@@ -160,23 +162,37 @@ const CourseCard = ({ course, index, setView }: { course: Course; index: number;
   return (
     <motion.div
       custom={index} variants={ANIMATION_VARIANTS.card} initial="hidden" whileInView="visible" viewport={{ once: true }}
-      className="h-full max-w-2xl w-full mx-auto" whileHover={{ y: -8, scale: 1.02 }} transition={{ type: "spring", stiffness: 200 }}
+      className="h-full max-w-2xl w-full mx-auto" whileHover={course.isSoldOut ? {} : { y: -8, scale: 1.02 }} transition={{ type: "spring", stiffness: 200 }}
     >
-      <Card className="relative h-full flex flex-col bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border border-white/30 hover:shadow-3xl transition-all duration-500 group min-h-[600px]">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <Card className="relative h-full flex flex-col bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border border-white/30 hover:shadow-3xl transition-all duration-500 group min-h-[600px] overflow-hidden">
+        {course.isSoldOut && (
+          <div className="absolute inset-0 z-40 flex items-center justify-center bg-white/70 backdrop-blur-[18px] rounded-3xl pointer-events-none">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="bg-white/95 border border-white/50 px-8 py-4 rounded-[20px] shadow-2xl z-50 transform -rotate-12"
+            >
+              <span className="text-3xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent uppercase tracking-wider">
+                {t("sold_out")}
+              </span>
+            </motion.div>
+          </div>
+        )}
+        <div className={`absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${course.isSoldOut ? "hidden" : ""}`} />
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
         {index === 1 && (
-          <div className="absolute -top-3 -right-5 z-20">
-            <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2 rotate-22 transform">
-              <Star className="w-4 h-4" /> {t("popular")}
+          <div className="absolute top-5 right-2 rotate-30 z-20">
+            <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-amber-500 text-white px-4 py-1.5 rounded-full text-xs font-black shadow-lg flex items-center gap-1.5 border border-white/20 uppercase tracking-wider">
+              <Star className="w-3.5 h-3.5 fill-current" /> {t("popular")}
             </div>
           </div>
         )}
         <CardHeader className="text-center pb-6 pt-8 relative z-10">
           <CardTitle className="text-3xl font-bold text-gray-900 mb-6 leading-tight">{course.title}</CardTitle>
           <div className="space-y-6">
-            <div className="flex items-baseline justify-center gap-3">
-              <span className="text-4xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">{course.price}</span>
+            <div className="flex items-baseline justify-center gap-2">
+              <span className="text-3xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">{course.price}</span>
               {course.originalPrice && <span className="text-lg text-gray-400 line-through font-medium">{course.originalPrice}</span>}
             </div>
             <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
@@ -211,13 +227,14 @@ const CourseCard = ({ course, index, setView }: { course: Course; index: number;
           </div>
         </CardContent>
         <CardFooter className="pt-6 pb-8 px-8 relative z-10">
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full">
+          <motion.div whileHover={{ scale: course.isSoldOut ? 1 : 1.03 }} whileTap={{ scale: course.isSoldOut ? 1 : 0.97 }} className="w-full">
             <Button
               onClick={handleEnrollClick}
-              className="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-4 text-lg rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl border-0 relative overflow-hidden group"
+              disabled={course.isSoldOut}
+              className={`w-full font-bold py-4 text-lg rounded-2xl transition-all duration-300 shadow-xl border-0 relative overflow-hidden group ${course.isSoldOut ? "bg-gray-400 cursor-not-allowed" : "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 text-white hover:shadow-2xl"}`}
             >
-              <span className="relative z-10">{t("enroll_now")}</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="relative z-10">{course.isSoldOut ? t("sold_out") : t("enroll_now")}</span>
+              {!course.isSoldOut && <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />}
             </Button>
           </motion.div>
         </CardFooter>
@@ -317,23 +334,27 @@ export function Courses({ setView }: { setView: (view: ViewType) => void }) {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        <motion.div
-          variants={ANIMATION_VARIANTS.container}
-          initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-6xl font-bold leading-[1.1] bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
-            {t("choose_path")}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            {t("choose_path_description")}
-          </p>
-        </motion.div>
+        <div className="relative">
+          <div className="">
+            <motion.div
+              variants={ANIMATION_VARIANTS.container}
+              initial="hidden" whileInView="visible" viewport={{ once: true }}
+              className="text-center mb-20"
+            >
+              <h2 className="text-6xl font-bold leading-[1.1] bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+                {t("choose_path")}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                {t("choose_path_description")}
+              </p>
+            </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center">
-          {courses.map((course, index) => (
-            <CourseCard key={course.id} course={course} index={index} setView={setView} />
-          ))}
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center">
+              {courses.map((course, index) => (
+                <CourseCard key={course.id} course={course} index={index} setView={setView} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

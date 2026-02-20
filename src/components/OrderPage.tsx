@@ -108,7 +108,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                     <Card className="p-8 rounded-[32px] border-none shadow-xl bg-white/80 backdrop-blur-md">
                         <div className="flex justify-between items-center mb-8">
                             <h1 className="text-3xl font-bold text-gray-900">{t("Kurs narxi") || "Kursni tanlang"}</h1>
-                            <div className="text-3xl font-bold text-orange-500">299,000 <span className="text-lg font-medium text-gray-500">sum</span></div>
+                            <div className="text-3xl font-bold text-orange-500">3.400.000 <span className="text-lg font-medium text-gray-500">so'm</span></div>
                         </div>
 
                         <div className="relative mb-8">
@@ -162,7 +162,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                                         <span className="font-bold text-gray-900">Visa</span>
                                         <span className="px-2 py-0.5 bg-purple-100 text-purple-600 text-xs font-bold rounded uppercase tracking-wider">Visa</span>
                                     </div>
-                                    <div className="text-lg font-bold text-orange-500">299,000 <span className="text-xs font-medium text-gray-400">sum</span></div>
+                                    <div className="text-lg font-bold text-orange-500">3.400.000 <span className="text-xs font-medium text-gray-400">so'm</span></div>
                                 </div>
                                 <div className="flex items-center justify-between relative z-10">
                                     <div>
