@@ -5,7 +5,7 @@ import { Card } from "./ui/card";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
-import { Phone, MapPin, Clock, Send } from "lucide-react";
+import { Phone, Clock, Send } from "lucide-react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
