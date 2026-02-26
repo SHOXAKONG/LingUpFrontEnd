@@ -421,7 +421,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                                 <div className="absolute z-20 mt-2 w-full rounded-2xl border border-gray-100 bg-white shadow-xl overflow-hidden">
                                     {allPlans.map((plan) => {
                                         const isSelected = String(plan.id) === selectedPlanId;
-                                        const isSoldOut = plan.course.toLowerCase().includes("premium");
+                                        const isSoldOut = plan.course.toLowerCase().includes("premium") || plan.course.toLowerCase().includes("премиум");
                                         return (
                                             <button
                                                 key={plan.id}
@@ -437,7 +437,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                                                     <span className={`font-medium ${isSoldOut ? "line-through text-gray-400" : ""}`}>{plan.course}</span>
                                                     <span className="text-sm font-semibold">
                                                         {isSoldOut ? (
-                                                            <span className="bg-red-100 text-red-600 px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider">Sold Out</span>
+                                                            <span className="bg-red-100 text-red-600 px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider">{t("sold_out")}</span>
                                                         ) : (
                                                             <>{formatPrice(plan.price)} sum</>
                                                         )}

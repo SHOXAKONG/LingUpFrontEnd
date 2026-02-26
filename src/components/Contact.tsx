@@ -138,7 +138,7 @@ export function Contact({ isModal = false }: { isModal?: boolean }) {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-7"
+            className={isModal ? "lg:col-span-12" : "lg:col-span-7"}
           >
             {successMessage && (
               <motion.div
@@ -156,7 +156,7 @@ export function Contact({ isModal = false }: { isModal?: boolean }) {
                 <h3 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
                   {t("send_us_message")}
                 </h3>
-                <p className="text-gray-500 text-sm">{t("we_will_reply_soon") || "Biz tez orada javob beramiz"}</p>
+                <p className="text-gray-500 text-sm">{t("we_will_reply_soon")}</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -166,7 +166,7 @@ export function Contact({ isModal = false }: { isModal?: boolean }) {
                     <Input id="name" name="full_name" type="text" placeholder={t("enter_full_name")} value={formData.full_name} onChange={handleChange} required className={inputStyles} />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone_number" className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">{t("enter_phone")}</Label>
+                    <Label htmlFor="phone_number" className="text-xs font-bold text-gray-400">{t("enter_phone")}</Label>
                     <Input id="phone_number" name="phone_number" type="text" inputMode="numeric" placeholder="+998 90 123 45 67" value={formData.phone_number} onChange={handleChange} maxLength={14} required className={inputStyles} />
                     {phoneError && <p className="text-red-500 text-[10px] font-bold ml-1 uppercase tracking-wider">{phoneError}</p>}
                   </div>
@@ -195,78 +195,64 @@ export function Contact({ isModal = false }: { isModal?: boolean }) {
           </motion.div>
 
           {/* Right Column: Info & Timer */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="lg:col-span-5 space-y-6"
-          >
-            {/* Timer Card */}
-            {!isModal && time !== null && time > 0 && (
-              <Card className="border-0 shadow-xl rounded-[32px] bg-indigo-600 p-8 text-center overflow-hidden relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 group-hover:scale-110 transition-transform duration-500" />
-                <div className="relative space-y-2">
-                  <p className="text-indigo-100 text-sm font-medium uppercase tracking-[0.2em]">{t("hurry_places_are_limited")}</p>
-                  <div className="text-5xl font-mono font-black text-white">{formatTime(time)}</div>
-                </div>
-              </Card>
-            )}
-
-            {/* Info Cards */}
-            <div className="space-y-4">
-              {[
-                {
-                  icon: Phone,
-                  title: t("call_us"),
-                  value: "+998 (90) 499-5000",
-                  href: "tel:+998904995000",
-                  gradient: "from-green-500 to-emerald-400",
-                  bg: "bg-green-50"
-                },
-                {
-                  icon: MapPin,
-                  title: t("visit_us"),
-                  value: "Qorasu-3 14-uy, Tashkent",
-                  href: "https://maps.google.com/?q=Qorasu-3+14-uy+Tashkent",
-                  gradient: "from-orange-500 to-yellow-400",
-                  bg: "bg-orange-50"
-                },
-                {
-                  icon: Clock,
-                  title: t("support_hours"),
-                  value: "9:00 AM - 8:00 PM",
-                  gradient: "from-purple-500 to-pink-500",
-                  bg: "bg-purple-50"
-                },
-              ].map((item, idx) => (
-                <motion.a
-                  key={idx}
-                  href={item.href}
-                  target={item.href?.startsWith('http') ? "_blank" : undefined}
-                  rel={item.href?.startsWith('http') ? "noopener noreferrer" : undefined}
-                  whileHover={{ x: 5 }}
-                  className="flex items-center gap-4 p-5 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group"
-                >
-                  <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
-                    <item.icon className="w-6 h-6 text-white" />
+          {!isModal && (
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="lg:col-span-5 space-y-6"
+            >
+              {/* Timer Card */}
+              {time !== null && time > 0 && (
+                <Card className="border-0 shadow-xl rounded-[32px] bg-indigo-600 p-8 text-center overflow-hidden relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 group-hover:scale-110 transition-transform duration-500" />
+                  <div className="relative space-y-2">
+                    <p className="text-indigo-100 text-sm font-medium uppercase tracking-[0.2em]">{t("hurry_places_are_limited")}</p>
+                    <div className="text-5xl font-mono font-black text-white">{formatTime(time)}</div>
                   </div>
-                  <div>
-                    <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{item.title}</h4>
-                    <p className="text-gray-900 font-bold group-hover:text-indigo-600 transition-colors">{item.value}</p>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
+                </Card>
+              )}
 
-            {/* Footer Timer for Modal */}
-            {isModal && time !== null && time > 0 && (
-              <div className="pt-6 border-t border-gray-100 flex flex-col items-center lg:items-start">
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">{t("hurry_places_are_limited")}</p>
-                <div className="text-4xl font-mono font-black bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">{formatTime(time)}</div>
+              {/* Info Cards */}
+              <div className="space-y-4">
+                {[
+                  {
+                    icon: Phone,
+                    title: t("call_us"),
+                    value: "+998 (90) 499-5000",
+                    href: "tel:+998904995000",
+                    gradient: "from-green-500 to-emerald-400",
+                    bg: "bg-green-50"
+                  },
+                  {
+                    icon: Clock,
+                    title: t("support_hours"),
+                    value: "9:00 AM - 8:00 PM",
+                    gradient: "from-purple-500 to-pink-500",
+                    bg: "bg-purple-50"
+                  },
+                ].map((item, idx) => (
+                  <motion.a
+                    key={idx}
+                    href={item.href}
+                    target={item.href?.startsWith('http') ? "_blank" : undefined}
+                    rel={item.href?.startsWith('http') ? "noopener noreferrer" : undefined}
+                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-4 p-5 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group"
+                  >
+                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                      <item.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{item.title}</h4>
+                      <p className="text-gray-900 font-bold group-hover:text-indigo-600 transition-colors">{item.value}</p>
+                    </div>
+                  </motion.a>
+                ))}
               </div>
-            )}
-          </motion.div>
+            </motion.div>
+          )}
         </div>
       </div>
     </div>

@@ -52,7 +52,6 @@ export default function App() {
             <Contact isModal={true} />
           </DialogContent>
         </Dialog>
-
         <Footer />
       </div>
     </ThemeProvider>

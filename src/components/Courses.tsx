@@ -129,7 +129,7 @@ const buildCoursesFromSkillApi = (rows: ApiSkillRow[], language: string): Course
       features: Array.from(agg.featureMap.entries())
         .sort((a, b) => a[1].order - b[1].order)
         .map(([name, meta]) => ({ name, status: meta.status })),
-      isSoldOut: agg.title.toLowerCase().includes("premium"),
+      isSoldOut: agg.title.toLowerCase().includes("premium") || agg.title.toLowerCase().includes("премиум"),
       ...DEFAULT_COURSE_STATS
     }));
 };
@@ -173,7 +173,7 @@ const CourseCard = ({ course, index, setView }: { course: Course; index: number;
     >
       <Card className="relative h-full flex flex-col bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border border-white/30 hover:shadow-3xl transition-all duration-500 group min-h-[600px] overflow-hidden">
         {course.isSoldOut && (
-          <div className="absolute inset-0 z-40 flex items-center justify-center bg-white/70 backdrop-blur-[18px] rounded-3xl pointer-events-none">
+          <div className="absolute inset-0 z-40 flex items-center justify-center bg-white/20 backdrop-blur-[2px] rounded-3xl pointer-events-none">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
