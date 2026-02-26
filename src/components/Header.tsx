@@ -15,7 +15,6 @@ const LANGUAGES = [
 const NAV_ITEMS = [
   { label: "Results", id: "results" },
   { label: "Reviews", id: "reviews" },
-  { label: "Contact", id: "contact" },
   { label: "Courses", id: "courses" },
 ];
 
