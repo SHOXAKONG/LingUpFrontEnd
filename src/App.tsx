@@ -11,7 +11,7 @@ import { OrderPage } from "./components/OrderPage";
 import { SuccessPage } from "./components/SuccessPage";
 import { Contact } from "./components/Contact";
 import { ContactButton } from "./components/ContactButton";
-import { Dialog, DialogContent } from "./components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./components/ui/dialog";
 
 export type ViewType = 'landing' | 'order' | 'success';
 
@@ -49,6 +49,12 @@ export default function App() {
 
         <Dialog open={isContactOpen} onOpenChange={setIsContactOpen}>
           <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-[80vw] lg:max-w-[75vw] xl:max-w-[800px] lg:rounded-2xl p-0 overflow-y-visible max-h-[95vh] border-0 bg-transparent shadow-none">
+            <DialogHeader className="sr-only">
+              <DialogTitle>Aloqa va bog'lanish</DialogTitle>
+              <DialogDescription>
+                Biz bilan bog'laning va o'z savollaringizga javob oling.
+              </DialogDescription>
+            </DialogHeader>
             <Contact isModal={true} />
           </DialogContent>
         </Dialog>
