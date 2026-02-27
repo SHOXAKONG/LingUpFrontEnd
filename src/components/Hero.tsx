@@ -207,19 +207,6 @@ export function Hero() {
                       <ArrowUpRight className="h-5 w-5 lg:h-6 lg:w-6" />
                     </Button>
                   </motion.a>
-                  <motion.a href="#contact">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="flex items-center gap-2 rounded-full shadow-xl
-                                 bg-white/95 border-2 border-gray-300
-                                 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-700
-                                 w-full sm:w-auto px-6 py-4 sm:px-8 lg:px-10 xl:px-12"
-                    >
-                      {t("contact")}
-                      <ArrowUpRight className="h-5 w-5 lg:h-6 lg:w-6" />
-                    </Button>
-                  </motion.a>
                 </motion.div>
               </div>
 

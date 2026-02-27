@@ -59,7 +59,7 @@ const ANIMATION_VARIANTS = {
   }
 };
 
-const DEFAULT_COURSE_STATS = { duration: "10 weeks", lessons: "40 lessons", students: "5000+" };
+const DEFAULT_COURSE_STATS = { duration: "10 weeks", lessons: "40 lessons", students: "3000+" };
 
 /* ===== Helpers ===== */
 const pickLocalized = (obj: Record<string, any>, base: string, language: string) => {

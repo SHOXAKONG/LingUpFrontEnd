@@ -16,22 +16,22 @@ const StatsSection = () => {
         <div className="hidden lg:block absolute top-40 right-20 w-20 h-20 bg-pink-500/15 transform rotate-45 animate-bounce" style={{ animationDuration: '4s' }}></div>
         <div className="hidden lg:block absolute bottom-20 left-1/4 w-16 h-16 bg-purple-500/20 rounded-full animate-ping" style={{ animationDuration: '2s' }}></div>
         <div className="hidden lg:block absolute bottom-40 right-1/3 w-24 h-24 bg-indigo-500/10 transform rotate-12 animate-pulse" style={{ animationDuration: '5s' }}></div>
-        
+
         {/* Mobile floating geometric shapes - smaller and repositioned */}
         <div className="lg:hidden absolute top-4 left-4 w-8 h-8 bg-blue-500/10 rounded-full animate-pulse" style={{ animationDuration: '3s' }}></div>
         <div className="lg:hidden absolute top-12 right-6 w-6 h-6 bg-pink-500/15 transform rotate-45 animate-bounce" style={{ animationDuration: '4s' }}></div>
         <div className="lg:hidden absolute bottom-8 left-8 w-4 h-4 bg-purple-500/20 rounded-full animate-ping" style={{ animationDuration: '2s' }}></div>
         <div className="lg:hidden absolute bottom-16 right-12 w-6 h-6 bg-indigo-500/10 transform rotate-12 animate-pulse" style={{ animationDuration: '5s' }}></div>
-        
+
         {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 animate-pulse" style={{ animationDuration: '8s' }}></div>
-        
+
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
           backgroundSize: '40px 40px'
         }}></div>
-        
+
         {/* Subtle wave animation */}
         <div className="absolute bottom-0 left-0 w-full h-full opacity-20">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -50,11 +50,11 @@ const StatsSection = () => {
       <div className="max-w-9xl mx-auto px-4 sm:px-6">
         {/* Desktop layout - unchanged */}
         <div className="hidden lg:flex items-center justify-center gap-15">
-          
+
           {/* Desktop Students Stat */}
           <div className="relative group cursor-pointer transition-all duration-500 hover:scale-105 hover:-translate-y-2 w-1/3 h-70">
             <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 p-8 rounded-2xl shadow-xl hover:shadow-blue-500/25 transition-all duration-500 backdrop-blur-sm border border-white/10 overflow-hidden w-full h-full">
-              
+
               {/* Simplified animated background */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-800"></div>
@@ -76,7 +76,7 @@ const StatsSection = () => {
 
                 <div className="mb-3 relative">
                   <span className="text-3xl lg:text-4xl font-black text-white drop-shadow-lg tracking-tight group-hover:scale-105 transition-transform duration-300 inline-block">
-                    5,500+
+                    3,000+
                   </span>
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
                 </div>
@@ -99,7 +99,7 @@ const StatsSection = () => {
           {/* Desktop Experience Stat */}
           <div className="relative group cursor-pointer transition-all duration-500 hover:scale-105 hover:-translate-y-2 w-1/3 h-70">
             <div className="relative bg-gradient-to-br from-green-600 via-emerald-600 to-teal-700 p-8 rounded-2xl shadow-xl hover:shadow-green-500/25 transition-all duration-500 backdrop-blur-sm border border-white/10 overflow-hidden w-full h-full">
-              
+
               {/* Grid pattern background */}
               <div className="absolute inset-0 opacity-20">
                 <div className="w-full h-full" style={{
@@ -144,12 +144,12 @@ const StatsSection = () => {
           {/* Desktop IELTS Results Stat */}
           <div className="relative group cursor-pointer transition-all duration-500 hover:scale-105 hover:-translate-y-2 w-1/3 h-70">
             <div className="relative bg-gradient-to-br from-rose-600 via-pink-600 to-red-700 p-8 rounded-2xl shadow-xl hover:shadow-rose-500/25 transition-all duration-500 backdrop-blur-sm border border-white/10 overflow-hidden w-full h-full">
-              
+
               {/* Wave pattern */}
               <div className="absolute inset-0 opacity-15">
                 <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M0,60 Q25,40 50,60 T100,60 L100,100 L0,100 Z" fill="white" opacity="0.1" className="group-hover:animate-pulse"/>
-                  <path d="M0,70 Q25,50 50,70 T100,70 L100,100 L0,100 Z" fill="white" opacity="0.05" className="group-hover:animate-pulse" style={{ animationDelay: '1s' }}/>
+                  <path d="M0,60 Q25,40 50,60 T100,60 L100,100 L0,100 Z" fill="white" opacity="0.1" className="group-hover:animate-pulse" />
+                  <path d="M0,70 Q25,50 50,70 T100,70 L100,100 L0,100 Z" fill="white" opacity="0.05" className="group-hover:animate-pulse" style={{ animationDelay: '1s' }} />
                 </svg>
               </div>
 
@@ -191,11 +191,11 @@ const StatsSection = () => {
 
         {/* Mobile layout - vertical stack */}
         <div className="lg:hidden flex flex-col space-y-6">
-          
+
           {/* Mobile Students Stat */}
           <div className="relative group cursor-pointer transition-all duration-500 hover:scale-102 w-full">
             <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 p-6 rounded-2xl shadow-xl backdrop-blur-sm border border-white/10 overflow-hidden">
-              
+
               {/* Simplified mobile background */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12"></div>
@@ -215,7 +215,7 @@ const StatsSection = () => {
                 <div className="flex-1">
                   <div className="flex items-center space-x-2">
                     <span className="text-2xl sm:text-3xl font-black text-white drop-shadow-lg tracking-tight">
-                      5,000+
+                      3,000+
                     </span>
                     <div className="w-3 h-3 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
                   </div>
@@ -236,7 +236,7 @@ const StatsSection = () => {
           {/* Mobile Experience Stat */}
           <div className="relative group cursor-pointer transition-all duration-500 hover:scale-102 w-full">
             <div className="relative bg-gradient-to-br from-green-600 via-emerald-600 to-teal-700 p-6 rounded-2xl shadow-xl backdrop-blur-sm border border-white/10 overflow-hidden">
-              
+
               {/* Mobile grid pattern */}
               <div className="absolute inset-0 opacity-15">
                 <div className="w-full h-full" style={{
@@ -276,11 +276,11 @@ const StatsSection = () => {
           {/* Mobile IELTS Results Stat */}
           <div className="relative group cursor-pointer transition-all duration-500 hover:scale-102 w-full">
             <div className="relative bg-gradient-to-br from-rose-600 via-pink-600 to-red-700 p-6 rounded-2xl shadow-xl backdrop-blur-sm border border-white/10 overflow-hidden">
-              
+
               {/* Mobile wave pattern */}
               <div className="absolute inset-0 opacity-15">
                 <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M0,60 Q25,40 50,60 T100,60 L100,100 L0,100 Z" fill="white" opacity="0.1"/>
+                  <path d="M0,60 Q25,40 50,60 T100,60 L100,100 L0,100 Z" fill="white" opacity="0.1" />
                 </svg>
               </div>
 

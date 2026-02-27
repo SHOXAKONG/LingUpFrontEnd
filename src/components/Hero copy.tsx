@@ -68,7 +68,7 @@ export function Hero() {
               <div className="text-center">
                 <div className="flex items-center justify-center mb-2">
                   <Users className="h-5 w-5 text-primary mr-2" />
-                  <div className="text-3xl font-bold text-foreground">5,000+</div>
+                  <div className="text-3xl font-bold text-foreground">3,000+</div>
                 </div>
                 <div className="text-base text-muted-foreground">{t('students')}</div>
               </div>
