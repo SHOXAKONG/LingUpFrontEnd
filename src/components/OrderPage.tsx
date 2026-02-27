@@ -243,7 +243,7 @@ export function OrderPage({ setView }: OrderPageProps) {
         if (Number.isNaN(numericPrice)) {
             return price;
         }
-        return numericPrice.toLocaleString("en-US", { maximumFractionDigits: 0 });
+        return numericPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
     const formatCardNumber = (cardNumber: string) => {
@@ -400,8 +400,10 @@ export function OrderPage({ setView }: OrderPageProps) {
                 >
                     <Card className="p-8 rounded-[32px] border-none shadow-xl bg-white/80 backdrop-blur-md">
                         <div className="flex justify-between items-center mb-8">
-                            <h1 className="text-3xl font-bold text-gray-900">{t("Kurs narxi") || "Kursni tanlang"}</h1>
-                            <div className="text-3xl font-bold text-orange-500">3.400.000 <span className="text-lg font-medium text-gray-500">so'm</span></div>
+                            <h1 className="text-3xl font-bold text-gray-900">{selectedPlan ? selectedPlan.course : (t("Kurs narxi") || "Kursni tanlang")}</h1>
+                            <div className="text-3xl font-bold text-orange-500">
+                                {selectedPlan ? formatPrice(selectedPlan.price) : "---"} <span className="text-lg font-medium text-gray-500">so'm</span>
+                            </div>
                         </div>
 
                         <div className="relative mb-8" ref={planDropdownRef}>
@@ -470,37 +472,6 @@ export function OrderPage({ setView }: OrderPageProps) {
                                 </div>
                             )}
 
-                            {/* Visa Card */}
-                            <div
-                                className="p-6 bg-gray-50 rounded-3xl border border-gray-100 relative group overflow-hidden cursor-pointer"
-                                onClick={() => handleCopy("4023 0605 0883 7977", "visa")}
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="flex justify-between items-center mb-4 relative z-10">
-                                    <div className="flex items-center gap-3">
-                                        <span className="font-bold text-gray-900">Visa</span>
-                                        <span className="px-2 py-0.5 bg-purple-100 text-purple-600 text-xs font-bold rounded uppercase tracking-wider">Visa</span>
-                                    </div>
-                                    <div className="text-lg font-bold text-orange-500">3.400.000 <span className="text-xs font-medium text-gray-400">so'm</span></div>
-                                </div>
-                                <div className="flex items-center justify-between relative z-10">
-                                    <div>
-                                        <div className="text-2xl font-mono font-bold text-gray-800 tracking-widest mb-1">4023 0605 0883 7977</div>
-                                        <div className="text-sm text-gray-500">Madina Fozilova</div>
-                                    </div>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        className="rounded-xl bg-white shadow-sm hover:bg-gray-50 hover:text-white hover:shadow-md transition-all active:scale-95 cursor-pointer"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleCopy("4023 0605 0883 7977", "visa");
-                                        }}
-                                    >
-                                        {isCopiedId === "visa" ? <CheckCircle2 className="w-5 h-5 text-green-500" /> : <Copy className="w-5 h-5 text-gray-400" />}
-                                    </Button>
-                                </div>
-                            </div>
 
                             {paymentCards.map((card) => {
                                 const accent = getCardAccent(card.type);
