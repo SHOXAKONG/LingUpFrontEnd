@@ -137,5 +137,34 @@
     "23": {
       "description": "Exceptional writing skills and fluency in discussion."
     }
-  }
+  },
+  "back_to_main": "Back to main page",
+  "course_price_label": "Course price",
+  "select_course_label": "Select course",
+  "price_loading": "Loading plans...",
+  "price_load_error": "Failed to load plans. Please try again.",
+  "select_plan": "Select a plan",
+  "selected_plan_label": "Selected plan:",
+  "payment_step_1": "1. Make payment through one of the following methods",
+  "card_loading": "Loading payment cards...",
+  "card_load_error": "Failed to load payment cards. Please try again.",
+  "no_cards": "No payment cards available at the moment.",
+  "payment_step_2": "2. Save the screenshot confirming your successful payment.",
+  "payment_step_3": "3. Upload the receipt and click the continue button.",
+  "timer_label": "Time remaining for payment:",
+  "full_name_label": "Full name",
+  "phone_number_label": "Phone number",
+  "telegram_username_label": "Telegram username",
+  "enter_name_placeholder": "Enter your name",
+  "enter_phone_placeholder": "+998 90 123 45 67",
+  "enter_telegram_placeholder": "@username",
+  "upload_receipt": "Upload receipt image",
+  "max_file_size": "PDF, PNG or JPG (max. 5 MB)",
+  "submitting": "Sending...",
+  "continue_button": "Continue",
+  "need_help": "Need help? Contact us:",
+  "confirmation_fail": "Confirmation failed. Please try again.",
+  "fill_all_fields_error": "Please fill in all fields and upload the receipt image.",
+  "som_currency": "sum",
+  "remaining_time_message": "Time remaining for payment:"
 }

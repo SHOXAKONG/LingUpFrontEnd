@@ -44,7 +44,7 @@ type PriceApiResponse = PricePlan[] | { results?: PricePlan[] };
 
 const BOOKING_PLACE_PLAN: PricePlan = {
     id: "booking-place-static",
-    course: "Joyingizni Bron qiling",
+    course: "Joyingizni Bron qiling", // Note: course name from API usually used, this is a special case
     price: "100000",
     order: 9999,
     description: "Static booking option",
@@ -152,7 +152,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                 }
 
                 console.error("Error fetching payment cards:", error);
-                setPaymentError("To'lov kartalarini yuklab bo'lmadi. Iltimos, qayta urinib ko'ring.");
+                setPaymentError(t("card_load_error"));
             } finally {
                 if (isMounted) {
                     setIsLoadingCards(false);
@@ -201,7 +201,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                 }
 
                 console.error("Error fetching price plans:", error);
-                setPlansError("Tariflarni yuklab bo'lmadi. Iltimos, qayta urinib ko'ring.");
+                setPlansError(t("price_load_error"));
             } finally {
                 if (isMounted) {
                     setIsLoadingPlans(false);
@@ -305,7 +305,7 @@ export function OrderPage({ setView }: OrderPageProps) {
         const telegramUsername = confirmationForm.telegram_username.trim();
 
         if (!fullName || !phone || !telegramUsername || !uploadedFile) {
-            setConfirmationError("Iltimos, barcha maydonlarni to'ldiring va chek rasmini yuklang.");
+            setConfirmationError(t("fill_all_fields_error"));
             return;
         }
 
@@ -329,9 +329,9 @@ export function OrderPage({ setView }: OrderPageProps) {
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const message = error.response?.data?.detail;
-                setConfirmationError(typeof message === "string" ? message : "Tasdiqlash yuborilmadi. Iltimos, qayta urinib ko'ring.");
+                setConfirmationError(typeof message === "string" ? message : t("confirmation_fail"));
             } else {
-                setConfirmationError("Tasdiqlash yuborilmadi. Iltimos, qayta urinib ko'ring.");
+                setConfirmationError(t("confirmation_fail"));
             }
         } finally {
             setIsSubmittingConfirmation(false);
@@ -364,7 +364,7 @@ export function OrderPage({ setView }: OrderPageProps) {
 
     const allPlans = [...plans, BOOKING_PLACE_PLAN];
     const selectedPlan = allPlans.find((plan) => String(plan.id) === selectedPlanId) ?? null;
-    const selectedPlanName = selectedPlan?.course ?? "Tarif tanlang";
+    const selectedPlanName = selectedPlan?.course ?? t("select_plan");
     const isConfirmationFormValid =
         confirmationForm.full_name.trim().length > 0 &&
         confirmationForm.phone.trim().length > 0 &&
@@ -386,7 +386,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                     className="text-gray-500 hover:text-gray-900 flex items-center gap-2 group transition-all"
                 >
                     <ChevronDown className="w-5 h-5 rotate-90 group-hover:-translate-x-1 transition-transform" />
-                    Asosiy sahifaga qaytish
+                    {t("back_to_main")}
                 </Button>
             </div>
 
@@ -400,9 +400,9 @@ export function OrderPage({ setView }: OrderPageProps) {
                 >
                     <Card className="p-8 rounded-[32px] border-none shadow-xl bg-white/80 backdrop-blur-md">
                         <div className="flex justify-between items-center mb-8">
-                            <h1 className="text-3xl font-bold text-gray-900">{selectedPlan ? selectedPlan.course : (t("Kurs narxi") || "Kursni tanlang")}</h1>
+                            <h1 className="text-3xl font-bold text-gray-900">{selectedPlan ? selectedPlan.course : (t("course_price_label") || t("select_course_label"))}</h1>
                             <div className="text-3xl font-bold text-orange-500">
-                                {selectedPlan ? formatPrice(selectedPlan.price) : "---"} <span className="text-lg font-medium text-gray-500">so'm</span>
+                                {selectedPlan ? formatPrice(selectedPlan.price) : "---"} <span className="text-lg font-medium text-gray-500">{t("som_currency")}</span>
                             </div>
                         </div>
 
@@ -414,7 +414,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                                 className="w-full flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100 cursor-pointer hover:bg-gray-100 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                                 <span className="font-medium text-gray-700">
-                                    {isLoadingPlans ? "Tariflar yuklanmoqda..." : selectedPlanName}
+                                    {isLoadingPlans ? t("price_loading") : selectedPlanName}
                                 </span>
                                 <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${isPlansOpen ? "rotate-180" : ""}`} />
                             </button>
@@ -441,7 +441,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                                                         {isSoldOut ? (
                                                             <span className="bg-red-100 text-red-600 px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider">{t("sold_out")}</span>
                                                         ) : (
-                                                            <>{formatPrice(plan.price)} sum</>
+                                                            <>{formatPrice(plan.price)} {t("som_currency")}</>
                                                         )}
                                                     </span>
                                                 </div>
@@ -454,15 +454,15 @@ export function OrderPage({ setView }: OrderPageProps) {
                             {plansError ? (
                                 <p className="mt-2 text-sm text-red-600 font-medium">{plansError}</p>
                             ) : (
-                                <p className="mt-2 text-sm text-purple-600 font-medium">Tanlangan tarif: {selectedPlanName}</p>
+                                <p className="mt-2 text-sm text-purple-600 font-medium">{t("selected_plan_label")} {selectedPlanName}</p>
                             )}
                         </div>
 
                         <div className="space-y-6">
-                            <h3 className="text-lg font-medium text-gray-800">1. Quyidagi to'lov turlaridan biri orqali to'lovni amalga oshiring</h3>
+                            <h3 className="text-lg font-medium text-gray-800">{t("payment_step_1")}</h3>
                             {isLoadingCards && (
                                 <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100 text-gray-500">
-                                    To'lov kartalari yuklanmoqda...
+                                    {t("card_loading")}
                                 </div>
                             )}
 
@@ -515,16 +515,16 @@ export function OrderPage({ setView }: OrderPageProps) {
 
                             {!isLoadingCards && !paymentError && paymentCards.length === 0 && (
                                 <div className="p-6 bg-yellow-50 rounded-3xl border border-yellow-100 text-yellow-700">
-                                    Hozircha to'lov kartalari mavjud emas.
+                                    {t("no_cards")}
                                 </div>
                             )}
                         </div>
                         <div className="mt-10 space-y-4">
                             <p className="text-sm text-gray-500">
-                                2. To'lovingiz muvaffaqiyatli amalga oshganini tasdiqlovchi rasmni saqlab oling (screenshot).
+                                {t("payment_step_2")}
                             </p>
                             <p className="text-sm text-gray-500">
-                                3. To'lovingiz rasmini yuklang va <span className="text-purple-600 font-bold tracking-wide uppercase text-xs">davom etish</span> tugmasini bosing.
+                                {t("payment_step_3")}
                             </p>
                         </div>
                     </Card>
@@ -539,7 +539,7 @@ export function OrderPage({ setView }: OrderPageProps) {
                 >
                     {/* Timer Card */}
                     <Card className="p-8 rounded-[32px] border-none shadow-lg bg-white/80 backdrop-blur-md text-center">
-                        <p className="text-sm text-gray-500 mb-2">To'lov qilish muddati tugashiga oz qoldi:</p>
+                        <p className="text-sm text-gray-500 mb-2">{t("timer_label")}</p>
                         <div className="text-4xl font-black text-gray-900 tracking-tighter flex items-center justify-center gap-2">
                             <Clock className="w-6 h-6 text-indigo-500" />
                             {formatTime(timeLeft)}
@@ -551,42 +551,42 @@ export function OrderPage({ setView }: OrderPageProps) {
                         <div className="space-y-4 mb-6">
                             <div className="space-y-2">
                                 <Label htmlFor="confirmation-full-name" className="text-sm font-semibold text-gray-700">
-                                    To'liq ism
+                                    {t("full_name_label")}
                                 </Label>
                                 <Input
                                     id="confirmation-full-name"
                                     type="text"
                                     value={confirmationForm.full_name}
                                     onChange={(e) => handleFormFieldChange("full_name", e.target.value)}
-                                    placeholder="Ismingizni kiriting"
+                                    placeholder={t("enter_name_placeholder")}
                                     className="h-11 rounded-xl border-gray-200 !bg-white !text-black placeholder:text-gray-400 dark:!bg-white dark:!text-black dark:placeholder:text-gray-400"
                                 />
                             </div>
 
                             <div className="space-y-2">
                                 <Label htmlFor="confirmation-phone" className="text-sm font-semibold text-gray-700">
-                                    Telefon raqam
+                                    {t("phone_number_label")}
                                 </Label>
                                 <Input
                                     id="confirmation-phone"
                                     type="text"
                                     value={confirmationForm.phone}
                                     onChange={(e) => handleFormFieldChange("phone", e.target.value)}
-                                    placeholder="+998 90 123 45 67"
+                                    placeholder={t("enter_phone_placeholder")}
                                     className="h-11 rounded-xl border-gray-200 !bg-white !text-black placeholder:text-gray-400 dark:!bg-white dark:!text-black dark:placeholder:text-gray-400"
                                 />
                             </div>
 
                             <div className="space-y-2">
                                 <Label htmlFor="confirmation-telegram" className="text-sm font-semibold text-gray-700">
-                                    Telegram username
+                                    {t("telegram_username_label")}
                                 </Label>
                                 <Input
                                     id="confirmation-telegram"
                                     type="text"
                                     value={confirmationForm.telegram_username}
                                     onChange={(e) => handleFormFieldChange("telegram_username", e.target.value)}
-                                    placeholder="@username"
+                                    placeholder={t("enter_telegram_placeholder")}
                                     className="h-11 rounded-xl border-gray-200 !bg-white !text-black placeholder:text-gray-400 dark:!bg-white dark:!text-black dark:placeholder:text-gray-400"
                                 />
                             </div>
@@ -617,10 +617,10 @@ export function OrderPage({ setView }: OrderPageProps) {
                                 )}
                             </div>
                             <h4 className="font-bold text-gray-900 mb-1 line-clamp-1">
-                                {uploadedFile ? uploadedFile.name : "Chek rasmini yuklang"}
+                                {uploadedFile ? uploadedFile.name : t("upload_receipt")}
                             </h4>
                             <p className="text-xs text-gray-400 uppercase tracking-widest">
-                                PDF, PNG yoki JPG (maks. 5 MB)
+                                {t("max_file_size")}
                             </p>
                         </motion.div>
 
@@ -641,17 +641,17 @@ export function OrderPage({ setView }: OrderPageProps) {
                             {isSubmittingConfirmation ? (
                                 <span className="inline-flex items-center gap-2">
                                     <Loader2 className="w-5 h-5 animate-spin" />
-                                    Yuborilmoqda...
+                                    {t("submitting")}
                                 </span>
                             ) : (
-                                "Davom etish"
+                                t("continue_button")
                             )}
                         </Button>
                     </Card>
 
                     {/* Contact Links */}
                     <div className="text-center space-y-4 pt-4">
-                        <p className="text-xs text-gray-400 uppercase tracking-widest font-bold">Yordam kerakmi? Biz bilan bog'laning:</p>
+                        <p className="text-xs text-gray-400 uppercase tracking-widest font-bold">{t("need_help")}</p>
                         <div className="space-y-3">
                             <Button variant="ghost" asChild className="w-full bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-2xl py-6 font-bold flex gap-2 transition-colors">
                                 <a href="https://t.me/lingup_admin" target="_blank" rel="noreferrer">

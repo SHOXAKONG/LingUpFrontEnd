@@ -139,5 +139,34 @@
     "23": {
       "description": "Отличные навыки письма и беглость в беседе."
     }
-  }
+  },
+  "back_to_main": "Вернуться на главную",
+  "course_price_label": "Стоимость курса",
+  "select_course_label": "Выберите курс",
+  "price_loading": "Загрузка тарифов...",
+  "price_load_error": "Не удалось загрузить тарифы. Пожалуйста, попробуйте еще раз.",
+  "select_plan": "Выберите тариф",
+  "selected_plan_label": "Выбранный тариф:",
+  "payment_step_1": "1. Произведите оплату одним из следующих способов",
+  "card_loading": "Загрузка платежных карт...",
+  "card_load_error": "Не удалось загрузить платежные карты. Пожалуйста, попробуйте еще раз.",
+  "no_cards": "Платежные карты пока недоступны.",
+  "payment_step_2": "2. Сохраните изображение (скриншот), подтверждающее успешную оплату.",
+  "payment_step_3": "3. Загрузите изображение чека и нажмите кнопку продолжить.",
+  "timer_label": "Время для оплаты истекает:",
+  "full_name_label": "Полное имя",
+  "phone_number_label": "Номер телефона",
+  "telegram_username_label": "Telegram username",
+  "enter_name_placeholder": "Введите ваше имя",
+  "enter_phone_placeholder": "+998 90 123 45 67",
+  "enter_telegram_placeholder": "@username",
+  "upload_receipt": "Загрузите изображение чека",
+  "max_file_size": "PDF, PNG или JPG (макс. 5 МБ)",
+  "submitting": "Отправка...",
+  "continue_button": "Продолжить",
+  "need_help": "Нужна помощь? Свяжитесь с нами:",
+  "confirmation_fail": "Ошибка отправки подтверждения. Пожалуйста, попробуйте еще раз.",
+  "fill_all_fields_error": "Пожалуйста, заполните все поля и загрузите изображение чека.",
+  "som_currency": "сум",
+  "remaining_time_message": "Время для оплаты истекает:"
 }

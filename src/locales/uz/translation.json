@@ -138,5 +138,34 @@
     "23": {
       "description": "Yozish ko‘nikmalari a’lo va suhbatda ravon."
     }
-  }
+  },
+  "back_to_main": "Asosiy sahifaga qaytish",
+  "course_price_label": "Kurs narxi",
+  "select_course_label": "Kursni tanlang",
+  "price_loading": "Tariflar yuklanmoqda...",
+  "price_load_error": "Tariflarni yuklab bo'lmadi. Iltimos, qayta urinib ko'ring.",
+  "select_plan": "Tarif tanlang",
+  "selected_plan_label": "Tanlangan tarif:",
+  "payment_step_1": "1. Quyidagi to'lov turlaridan biri orqali to'lovni amalga oshiring",
+  "card_loading": "To'lov kartalari yuklanmoqda...",
+  "card_load_error": "To'lov kartalarini yuklab bo'lmadi. Iltimos, qayta urinib ko'ring.",
+  "no_cards": "Hozircha to'lov kartalari mavjud emas.",
+  "payment_step_2": "2. To'lovingiz muvaffaqiyatli amalga oshganini tasdiqlovchi rasmni saqlab oling (screenshot).",
+  "payment_step_3": "3. To'lovingiz rasmini yuklang va davom etish tugmasini bosing.",
+  "timer_label": "To'lov qilish muddati tugashiga oz qoldi:",
+  "full_name_label": "To'liq ism",
+  "phone_number_label": "Telefon raqam",
+  "telegram_username_label": "Telegram username",
+  "enter_name_placeholder": "Ismingizni kiriting",
+  "enter_phone_placeholder": "+998 90 123 45 67",
+  "enter_telegram_placeholder": "@username",
+  "upload_receipt": "Chek rasmini yuklang",
+  "max_file_size": "PDF, PNG yoki JPG (maks. 5 MB)",
+  "submitting": "Yuborilmoqda...",
+  "continue_button": "Davom etish",
+  "need_help": "Yordam kerakmi? Biz bilan bog'laning:",
+  "confirmation_fail": "Tasdiqlash yuborilmadi. Iltimos, qayta urinib ko'ring.",
+  "fill_all_fields_error": "Iltimos, barcha maydonlarni to'ldiring va chek rasmini yuklang.",
+  "som_currency": "so'm",
+  "remaining_time_message": "To'lov qilish muddati tugashiga oz qoldi:"
 }
